@@ -1,10 +1,14 @@
 {
   "id": "gmail_workspace",
   "name": "Gmail (Google Workspace — cuenta de servicio)",
+  "name_en": "Gmail (Google Workspace — service account)",
   "version": "1.0.0",
   "description": "Lectura y envío de correos en múltiples buzones de un dominio Google Workspace mediante una cuenta de servicio con delegación de dominio",
+  "description_en": "Read and send email across multiple mailboxes in a Google Workspace domain using a service account with domain-wide delegation",
   "icon": "icon.svg",
   "category": "messaging",
+  "category_en": "messaging",
+  "keywords": ["email", "correo", "correos", "gmail", "workspace", "google", "domain-wide delegation", "delegación de dominio", "cuenta de servicio", "service account"],
   "library": {
     "package": "ruvic-gmail-workspace-connector",
     "install": "pip install git+https://github.com/Dgirto/Gmail-Workspace.git#subdirectory=lib",
