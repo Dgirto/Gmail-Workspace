@@ -1,0 +1,51 @@
+{
+  "id": "gmail_workspace",
+  "name": "Gmail (Google Workspace — cuenta de servicio)",
+  "version": "1.0.0",
+  "description": "Lectura y envío de correos en múltiples buzones de un dominio Google Workspace mediante una cuenta de servicio con delegación de dominio",
+  "icon": "icon.svg",
+  "category": "messaging",
+  "library": {
+    "package": "ruvic-gmail-workspace-connector",
+    "install": "pip install git+https://github.com/Dgirto/Gmail-Workspace.git#subdirectory=lib",
+    "import_name": "ruvic_gmail_workspace_connector"
+  },
+  "auth_modes": [
+    {
+      "id": "service_account",
+      "label": "Cuenta de servicio (delegación de dominio)",
+      "fields": [
+        {
+          "key": "service_account_json",
+          "label": "JSON de la cuenta de servicio",
+          "type": "textarea",
+          "required": true,
+          "secret": true,
+          "help_text": "Contenido completo del archivo de credenciales JSON descargado desde Google Cloud Console (IAM y administración → Cuentas de servicio → Claves). Requiere delegación de dominio autorizada por el superadministrador de Workspace."
+        },
+        {
+          "key": "default_mailbox",
+          "label": "Buzón de prueba",
+          "type": "text",
+          "required": true,
+          "placeholder": "facturacion@tuempresa.com",
+          "help_text": "Buzón del dominio usado solo para el botón 'Probar conexión'. El código generado puede impersonar cualquier otro buzón autorizado del mismo dominio pasándolo como parámetro."
+        },
+        {
+          "key": "request_timeout",
+          "label": "Timeout de solicitud (segundos)",
+          "type": "number",
+          "required": false,
+          "default": "30"
+        }
+      ]
+    }
+  ],
+  "env_prefix": "RUVIC_GMAIL_WORKSPACE_",
+  "operations": ["mail.list", "mail.read", "mail.send", "mail.send_with_attachment"],
+  "test_connection": true,
+  "docs": {
+    "skill": "SKILL.md",
+    "permissions_note": "Requiere que un superadministrador de Google Workspace autorice el Client ID de esta cuenta de servicio en Admin Console → Seguridad → Control de acceso a las API → Delegación en todo el dominio, con los scopes gmail.readonly y gmail.send. Con esa autorización, la cuenta de servicio puede impersonar cualquier buzón del dominio sin autorización individual por usuario ni tokens que expiren. Solo funciona con Google Workspace, no con cuentas Gmail personales — para esas usa el conector Gmail (OAuth2) o Gmail (IMAP/SMTP)."
+  }
+}
