@@ -3,263 +3,263 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conector Gmail Workspace — Ruvic</title>
+  <title data-i18n="doc_title">Conector Gmail Workspace — Ruvic</title>
   <link rel="stylesheet" href="assets/ruvic.css">
 </head>
 <body class="guide">
   <main class="ruvic-container">
 
     <nav class="ruvic-toc" aria-label="Índice">
-      <h2>Contenido</h2>
+      <h2 data-i18n="toc_title">Contenido</h2>
       <ol>
-        <li><a href="#que-es">¿Qué es y para qué sirve?</a></li>
-        <li><a href="#prerrequisitos">Prerrequisitos</a></li>
-        <li><a href="#configuracion-fabricante">Configuración en el fabricante</a></li>
-        <li><a href="#permisos">Permisos requeridos</a></li>
-        <li><a href="#configuracion-ruvic">Configuración en Ruvic</a></li>
-        <li><a href="#verificacion">Verificación</a></li>
-        <li><a href="#solucion-problemas">Solución de problemas</a></li>
-        <li><a href="#faq-seguridad">Preguntas frecuentes y notas de seguridad</a></li>
+        <li><a href="#que-es" data-i18n="toc.que_es">¿Qué es y para qué sirve?</a></li>
+        <li><a href="#prerrequisitos" data-i18n="toc.prerrequisitos">Prerrequisitos</a></li>
+        <li><a href="#configuracion-fabricante" data-i18n="toc.configuracion_fabricante">Configuración en el fabricante</a></li>
+        <li><a href="#permisos" data-i18n="toc.permisos">Permisos requeridos</a></li>
+        <li><a href="#configuracion-ruvic" data-i18n="toc.configuracion_ruvic">Configuración en Ruvic</a></li>
+        <li><a href="#verificacion" data-i18n="toc.verificacion">Verificación</a></li>
+        <li><a href="#solucion-problemas" data-i18n="toc.solucion_problemas">Solución de problemas</a></li>
+        <li><a href="#faq-seguridad" data-i18n="toc.faq_seguridad">Preguntas frecuentes y notas de seguridad</a></li>
       </ol>
     </nav>
 
-    <h1>Gmail Workspace</h1>
+    <h1 data-i18n="guide_title">Gmail Workspace</h1>
     <p class="guide-updated">{{ULTIMA_ACTUALIZACION}}</p>
 
     <!-- ============ 1. QUÉ ES ============ -->
     <section>
-      <h2 id="que-es">¿Qué es y para qué sirve?</h2>
+      <h2 id="que-es" data-i18n="section.que_es">¿Qué es y para qué sirve?</h2>
 
-      <p>El conector Gmail Workspace permite que el agente de Ruvic lea, busque y envíe correos desde <strong>uno o varios buzones</strong> de tu dominio Google Workspace, usando una sola credencial administrada centralizadamente por tu equipo de TI — sin que cada usuario tenga que autorizar su propio buzón por separado. Ideal para automatizar buzones compartidos de un equipo. Una vez configurado, puedes pedirle al agente cosas como:</p>
+      <p data-i18n="que_es.intro">El conector Gmail Workspace permite que el agente de Ruvic lea, busque y envíe correos desde <strong>uno o varios buzones</strong> de tu dominio Google Workspace, usando una sola credencial administrada centralizadamente por tu equipo de TI — sin que cada usuario tenga que autorizar su propio buzón por separado. Ideal para automatizar buzones compartidos de un equipo. Una vez configurado, puedes pedirle al agente cosas como:</p>
       <ul>
-        <li>"Revisa el buzón de facturación y resume los correos nuevos."</li>
-        <li>"Busca en soporte@empresa.com los correos de la última semana sobre 'incidente crítico'."</li>
-        <li>"Envía desde cobranzas@empresa.com un recordatorio de pago con el estado de cuenta adjunto."</li>
+        <li data-i18n="que_es.li1">"Revisa el buzón de facturación y resume los correos nuevos."</li>
+        <li data-i18n="que_es.li2">"Busca en soporte@empresa.com los correos de la última semana sobre 'incidente crítico'."</li>
+        <li data-i18n="que_es.li3">"Envía desde cobranzas@empresa.com un recordatorio de pago con el estado de cuenta adjunto."</li>
       </ul>
-      <p>Operaciones soportadas:</p>
+      <p data-i18n="que_es.ops_lead">Operaciones soportadas:</p>
 
       <table>
         <thead>
           <tr>
-            <th>Operación</th>
-            <th>Qué hace</th>
+            <th data-i18n="table.operacion">Operación</th>
+            <th data-i18n="table.que_hace">Qué hace</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>mail.list</code></td>
-            <td>Busca/lista correos usando filtros (sintaxis de búsqueda de Gmail)</td>
+            <td data-i18n="op.list">Busca/lista correos usando filtros (sintaxis de búsqueda de Gmail)</td>
           </tr>
           <tr>
             <td><code>mail.read</code></td>
-            <td>Lee el detalle y el cuerpo de un correo</td>
+            <td data-i18n="op.read">Lee el detalle y el cuerpo de un correo</td>
           </tr>
           <tr>
             <td><code>mail.send</code></td>
-            <td>Envía un correo de texto</td>
+            <td data-i18n="op.send">Envía un correo de texto</td>
           </tr>
           <tr>
             <td><code>mail.send_with_attachment</code></td>
-            <td>Envía un correo con un archivo adjunto (máx. 20 MB)</td>
+            <td data-i18n="op.send_attach">Envía un correo con un archivo adjunto (máx. 20 MB)</td>
           </tr>
         </tbody>
       </table>
 
       <div class="callout callout-warning">
-        <span class="callout-title">Solo para Google Workspace</span>
-        Este conector usa <strong>delegación de dominio</strong>, una función exclusiva de Google Workspace. No funciona con cuentas de Gmail personales (@gmail.com) — para esas usa el conector "Gmail" (OAuth2) o "Gmail (IMAP/SMTP)".
+        <span class="callout-title" data-i18n="callout.solo_ws.title">Solo para Google Workspace</span>
+        <span data-i18n="callout.solo_ws.body">Este conector usa <strong>delegación de dominio</strong>, una función exclusiva de Google Workspace. No funciona con cuentas de Gmail personales (@gmail.com) — para esas usa el conector "Gmail" (OAuth2) o "Gmail (IMAP/SMTP)".</span>
       </div>
     </section>
 
     <!-- ============ 2. PRERREQUISITOS ============ -->
     <section>
-      <h2 id="prerrequisitos">Prerrequisitos</h2>
+      <h2 id="prerrequisitos" data-i18n="section.prerrequisitos">Prerrequisitos</h2>
 
       <ul>
-        <li>Una organización con <strong>Google Workspace</strong> (no funciona con cuentas de Gmail personales @gmail.com).</li>
-        <li>Acceso de <strong>superadministrador de Google Workspace</strong> — es la única persona que puede autorizar la delegación de dominio (paso único, sección 3).</li>
-        <li>Acceso al <strong>Google Cloud Console</strong> del mismo dominio, con permisos para crear un proyecto y una cuenta de servicio.</li>
-        <li>Los correos de los buzones que el agente va a usar (ej. <code>facturacion@tuempresa.com</code>).</li>
+        <li data-i18n="prereq.li1">Una organización con <strong>Google Workspace</strong> (no funciona con cuentas de Gmail personales @gmail.com).</li>
+        <li data-i18n="prereq.li2">Acceso de <strong>superadministrador de Google Workspace</strong> — es la única persona que puede autorizar la delegación de dominio (paso único, sección 3).</li>
+        <li data-i18n="prereq.li3">Acceso al <strong>Google Cloud Console</strong> del mismo dominio, con permisos para crear un proyecto y una cuenta de servicio.</li>
+        <li data-i18n="prereq.li4">Los correos de los buzones que el agente va a usar (ej. <code>facturacion@tuempresa.com</code>).</li>
       </ul>
     </section>
 
     <!-- ============ 3. CONFIGURACIÓN EN EL FABRICANTE ============ -->
     <section>
-      <h2 id="configuracion-fabricante">Configuración en el fabricante</h2>
+      <h2 id="configuracion-fabricante" data-i18n="section.configuracion_fabricante">Configuración en el fabricante</h2>
 
-      <p>Vas a crear una <strong>cuenta de servicio</strong> en Google Cloud y autorizarla mediante <strong>delegación de dominio</strong> para que pueda actuar en nombre de cualquier buzón autorizado. Esto se hace <strong>una sola vez por dominio</strong> — después, agregar un buzón nuevo no requiere repetir estos pasos, solo compartírselo al agente por su correo.</p>
+      <p data-i18n="fab.intro">Vas a crear una <strong>cuenta de servicio</strong> en Google Cloud y autorizarla mediante <strong>delegación de dominio</strong> para que pueda actuar en nombre de cualquier buzón autorizado. Esto se hace <strong>una sola vez por dominio</strong> — después, agregar un buzón nuevo no requiere repetir estos pasos, solo compartírselo al agente por su correo.</p>
 
       <ol class="ruvic-steps">
         <li>
-          <strong>Crea (o selecciona) un proyecto en Google Cloud Console.</strong>
-          <p>Ve a <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">console.cloud.google.com/projectcreate</a> y crea un proyecto (o reutiliza uno existente del mismo dominio).</p>
+          <strong data-i18n="step1.title">Crea (o selecciona) un proyecto en Google Cloud Console.</strong>
+          <p data-i18n="step1.body">Ve a <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">console.cloud.google.com/projectcreate</a> y crea un proyecto (o reutiliza uno existente del mismo dominio).</p>
         </li>
 
         <li>
-          <strong>Habilita la Gmail API.</strong>
-          <p>En el menú <em>APIs y servicios → Biblioteca</em>, busca "Gmail API" y pulsa <em>Habilitar</em>.</p>
+          <strong data-i18n="step2.title">Habilita la Gmail API.</strong>
+          <p data-i18n="step2.body">En el menú <em>APIs y servicios → Biblioteca</em>, busca "Gmail API" y pulsa <em>Habilitar</em>.</p>
         </li>
 
         <li>
-          <strong>Crea la cuenta de servicio.</strong>
-          <p>En <em>IAM y administración → Cuentas de servicio → Crear cuenta de servicio</em>. Dale un nombre (ej. <code>ruvic-gmail-workspace</code>) y termina el asistente sin asignar roles adicionales de proyecto.</p>
+          <strong data-i18n="step3.title">Crea la cuenta de servicio.</strong>
+          <p data-i18n="step3.body">En <em>IAM y administración → Cuentas de servicio → Crear cuenta de servicio</em>. Dale un nombre (ej. <code>ruvic-gmail-workspace</code>) y termina el asistente sin asignar roles adicionales de proyecto.</p>
         </li>
 
         <li>
-          <strong>Genera y descarga la clave JSON.</strong>
-          <p>Abre la cuenta de servicio creada → pestaña <em>Claves</em> → <em>Agregar clave → Crear clave nueva → JSON</em>. Se descargará un archivo <code>.json</code>: guárdalo, lo usarás en el formulario de Ruvic.</p>
-          <div class="screenshot-placeholder">
+          <strong data-i18n="step4.title">Genera y descarga la clave JSON.</strong>
+          <p data-i18n="step4.body">Abre la cuenta de servicio creada → pestaña <em>Claves</em> → <em>Agregar clave → Crear clave nueva → JSON</em>. Se descargará un archivo <code>.json</code>: guárdalo, lo usarás en el formulario de Ruvic.</p>
+          <div class="screenshot-placeholder" data-i18n="ph.sa_key">
             [ Captura: pestaña Claves de la cuenta de servicio con el botón "Agregar clave" — reemplazar por assets/img/workspace-sa-key.png ]
           </div>
         </li>
 
         <li>
-          <strong>Anota el ID de cliente único de la cuenta de servicio.</strong>
-          <p>En la pestaña <em>Detalles</em> de la cuenta de servicio, copia el <strong>ID de cliente único</strong> (una cadena numérica larga). Lo necesitarás en el siguiente paso.</p>
+          <strong data-i18n="step5.title">Anota el ID de cliente único de la cuenta de servicio.</strong>
+          <p data-i18n="step5.body">En la pestaña <em>Detalles</em> de la cuenta de servicio, copia el <strong>ID de cliente único</strong> (una cadena numérica larga). Lo necesitarás en el siguiente paso.</p>
         </li>
 
         <li>
-          <strong>El superadministrador autoriza la delegación de dominio (paso crítico).</strong>
-          <p>Este paso <strong>solo lo puede hacer el superadministrador</strong> de tu organización de Google Workspace — no un usuario normal ni un administrador de solo Cloud. Ve a <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">admin.google.com → Seguridad → Control de acceso a las API → Delegación en todo el dominio</a>. Pulsa <em>Agregar nuevo</em> e ingresa:</p>
+          <strong data-i18n="step6.title">El superadministrador autoriza la delegación de dominio (paso crítico).</strong>
+          <p data-i18n="step6.body">Este paso <strong>solo lo puede hacer el superadministrador</strong> de tu organización de Google Workspace — no un usuario normal ni un administrador de solo Cloud. Ve a <a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank" rel="noopener">admin.google.com → Seguridad → Control de acceso a las API → Delegación en todo el dominio</a>. Pulsa <em>Agregar nuevo</em> e ingresa:</p>
           <ul>
-            <li><strong>ID de cliente:</strong> el ID de cliente único copiado en el paso anterior.</li>
-            <li><strong>Alcances OAuth</strong> (exactamente estos dos, separados por coma, sin espacios extra):
+            <li data-i18n="step6.li1"><strong>ID de cliente:</strong> el ID de cliente único copiado en el paso anterior.</li>
+            <li><span data-i18n="step6.li2"><strong>Alcances OAuth</strong> (exactamente estos dos, separados por coma, sin espacios extra):</span>
 <pre><code>https://www.googleapis.com/auth/gmail.readonly,https://www.googleapis.com/auth/gmail.send</code></pre>
             </li>
           </ul>
-          <p>Guarda. Sin este paso, cualquier intento de conexión falla con el error <code>unauthorized_client</code>.</p>
-          <div class="screenshot-placeholder">
+          <p data-i18n="step6.after">Guarda. Sin este paso, cualquier intento de conexión falla con el error <code>unauthorized_client</code>.</p>
+          <div class="screenshot-placeholder" data-i18n="ph.delegation">
             [ Captura: pantalla de delegación en todo el dominio con el ID de cliente y los scopes — reemplazar por assets/img/workspace-domain-delegation.png ]
           </div>
         </li>
 
         <li>
-          <strong>Define qué buzón usarás para la prueba inicial.</strong>
-          <p>Anota el correo de un buzón del dominio (ej. <code>facturacion@tuempresa.com</code>) para el formulario de Ruvic. Después de configurado, el agente podrá usar <strong>cualquier otro buzón autorizado</strong> del mismo dominio, no solo este.</p>
+          <strong data-i18n="step7.title">Define qué buzón usarás para la prueba inicial.</strong>
+          <p data-i18n="step7.body">Anota el correo de un buzón del dominio (ej. <code>facturacion@tuempresa.com</code>) para el formulario de Ruvic. Después de configurado, el agente podrá usar <strong>cualquier otro buzón autorizado</strong> del mismo dominio, no solo este.</p>
         </li>
       </ol>
     </section>
 
     <!-- ============ 4. PERMISOS ============ -->
     <section>
-      <h2 id="permisos">Permisos requeridos</h2>
+      <h2 id="permisos" data-i18n="section.permisos">Permisos requeridos</h2>
 
-      <p>Principio de mínimo privilegio: la cuenta de servicio solo necesita estos dos scopes de Gmail. No autorices scopes de administración, de Drive ni de otras APIs de Workspace.</p>
+      <p data-i18n="permisos.intro">Principio de mínimo privilegio: la cuenta de servicio solo necesita estos dos scopes de Gmail. No autorices scopes de administración, de Drive ni de otras APIs de Workspace.</p>
 
       <table>
         <thead>
           <tr>
-            <th>Scope</th>
-            <th>Para qué lo usa el conector</th>
+            <th data-i18n="table.scope">Scope</th>
+            <th data-i18n="table.scope_uso">Para qué lo usa el conector</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>gmail.readonly</code></td>
-            <td>Buscar y listar correos (<code>mail.list</code>), leer el detalle de un correo (<code>mail.read</code>)</td>
+            <td data-i18n="scope.readonly">Buscar y listar correos (<code>mail.list</code>), leer el detalle de un correo (<code>mail.read</code>)</td>
           </tr>
           <tr>
             <td><code>gmail.send</code></td>
-            <td>Enviar correos (<code>mail.send</code>, <code>mail.send_with_attachment</code>)</td>
+            <td data-i18n="scope.send">Enviar correos (<code>mail.send</code>, <code>mail.send_with_attachment</code>)</td>
           </tr>
         </tbody>
       </table>
 
       <div class="callout callout-warning">
-        <span class="callout-title">La delegación aplica a TODO el dominio</span>
-        A diferencia de OAuth2 por usuario, estos scopes no se limitan a un buzón — la cuenta de servicio puede impersonar <strong>cualquier</strong> buzón del dominio con esos permisos, incluidos los que se creen en el futuro. No hay forma de restringirlo a una lista específica de buzones desde el Admin Console.
+        <span class="callout-title" data-i18n="callout.dominio.title">La delegación aplica a TODO el dominio</span>
+        <span data-i18n="callout.dominio.body">A diferencia de OAuth2 por usuario, estos scopes no se limitan a un buzón — la cuenta de servicio puede impersonar <strong>cualquier</strong> buzón del dominio con esos permisos, incluidos los que se creen en el futuro. No hay forma de restringirlo a una lista específica de buzones desde el Admin Console.</span>
       </div>
     </section>
 
     <!-- ============ 5. CONFIGURACIÓN EN RUVIC ============ -->
     <section>
-      <h2 id="configuracion-ruvic">Configuración en Ruvic</h2>
+      <h2 id="configuracion-ruvic" data-i18n="section.configuracion_ruvic">Configuración en Ruvic</h2>
 
-      <p>Entra a <strong>Settings → Conectores</strong>, busca la tarjeta <strong>Gmail (Google Workspace — cuenta de servicio)</strong> y pulsa <strong>Configurar</strong>. Diligencia el formulario con los valores que obtuviste en la sección anterior:</p>
+      <p data-i18n="ruvic.intro">Entra a <strong>Settings → Conectores</strong>, busca la tarjeta <strong>Gmail (Google Workspace — cuenta de servicio)</strong> y pulsa <strong>Configurar</strong>. Diligencia el formulario con los valores que obtuviste en la sección anterior:</p>
 
       <table>
         <thead>
           <tr>
-            <th>Campo del formulario</th>
-            <th>Valor</th>
+            <th data-i18n="table.campo">Campo del formulario</th>
+            <th data-i18n="table.valor">Valor</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>JSON de la cuenta de servicio</td>
-            <td>Abre el archivo <code>.json</code> descargado en el paso 4 y pega <strong>todo</strong> su contenido</td>
+            <td data-i18n="field.json.label">JSON de la cuenta de servicio</td>
+            <td data-i18n="field.json.value">Abre el archivo <code>.json</code> descargado en el paso 4 y pega <strong>todo</strong> su contenido</td>
           </tr>
           <tr>
-            <td>Buzón de prueba</td>
-            <td>El correo definido en el paso 7 (ej. <code>facturacion@tuempresa.com</code>)</td>
+            <td data-i18n="field.buzon.label">Buzón de prueba</td>
+            <td data-i18n="field.buzon.value">El correo definido en el paso 7 (ej. <code>facturacion@tuempresa.com</code>)</td>
           </tr>
           <tr>
-            <td>Timeout de solicitud</td>
-            <td>Opcional; <code>30</code> segundos por defecto</td>
+            <td data-i18n="field.timeout.label">Timeout de solicitud</td>
+            <td data-i18n="field.timeout.value">Opcional; <code>30</code> segundos por defecto</td>
           </tr>
         </tbody>
       </table>
 
-      <p>Guarda y pulsa <span class="ruvic-button">Probar conexión</span> — la plataforma se conectará a Gmail API impersonando el buzón de prueba y confirmará que la delegación de dominio funciona.</p>
+      <p data-i18n="ruvic.probar">Guarda y pulsa <span class="ruvic-button">Probar conexión</span> — la plataforma se conectará a Gmail API impersonando el buzón de prueba y confirmará que la delegación de dominio funciona.</p>
 
-      <div class="screenshot-placeholder">
+      <div class="screenshot-placeholder" data-i18n="ph.form">
         [ Captura: formulario del conector Gmail Workspace en Settings → Conectores — reemplazar por assets/img/workspace-form.png ]
       </div>
     </section>
 
     <!-- ============ 6. VERIFICACIÓN ============ -->
     <section>
-      <h2 id="verificacion">Verificación</h2>
+      <h2 id="verificacion" data-i18n="section.verificacion">Verificación</h2>
 
       <ol class="ruvic-steps">
         <li>
-          <strong>Test de conexión exitoso.</strong>
-          <p>El botón <em>Probar conexión</em> debe responder: <em>"Conexión exitosa al buzón facturacion@tuempresa.com (delegación de dominio)"</em>. La tarjeta del conector cambia a estado <strong>Configurado</strong>.</p>
+          <strong data-i18n="verif1.title">Test de conexión exitoso.</strong>
+          <p data-i18n="verif1.body">El botón <em>Probar conexión</em> debe responder: <em>"Conexión exitosa al buzón facturacion@tuempresa.com (delegación de dominio)"</em>. La tarjeta del conector cambia a estado <strong>Configurado</strong>.</p>
         </li>
         <li>
-          <strong>Automatización mínima de prueba, incluido un segundo buzón.</strong>
-          <p>Abre una conversación nueva con el agente y pídele:</p>
-          <blockquote><em>"Busca en el buzón facturacion@tuempresa.com los correos no leídos de los últimos 3 días."</em></blockquote>
-          <p>Luego prueba con otro buzón del dominio distinto al de la prueba inicial (ej. <code>soporte@tuempresa.com</code>) — si el agente responde con datos reales de ambos sin pedir nueva configuración, la delegación de dominio quedó operativa de punta a punta.</p>
+          <strong data-i18n="verif2.title">Automatización mínima de prueba, incluido un segundo buzón.</strong>
+          <p data-i18n="verif2.body">Abre una conversación nueva con el agente y pídele:</p>
+          <blockquote data-i18n="verif2.quote"><em>"Busca en el buzón facturacion@tuempresa.com los correos no leídos de los últimos 3 días."</em></blockquote>
+          <p data-i18n="verif2.after">Luego prueba con otro buzón del dominio distinto al de la prueba inicial (ej. <code>soporte@tuempresa.com</code>) — si el agente responde con datos reales de ambos sin pedir nueva configuración, la delegación de dominio quedó operativa de punta a punta.</p>
         </li>
       </ol>
     </section>
 
     <!-- ============ 7. SOLUCIÓN DE PROBLEMAS ============ -->
     <section>
-      <h2 id="solucion-problemas">Solución de problemas</h2>
+      <h2 id="solucion-problemas" data-i18n="section.solucion_problemas">Solución de problemas</h2>
 
       <table>
         <thead>
           <tr>
-            <th>Mensaje / síntoma</th>
-            <th>Causa probable y solución</th>
+            <th data-i18n="table.sintoma">Mensaje / síntoma</th>
+            <th data-i18n="table.causa">Causa probable y solución</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>"unauthorized_client" al probar la conexión</td>
-            <td>El error más común. El conector te dirá exactamente qué revisar: 1) que el Client ID esté agregado en el Admin Console (paso 6 de la sección anterior), 2) que los scopes coincidan carácter por carácter con los dos indicados (sin espacios extra), 3) que el buzón de prueba pertenezca al mismo dominio Workspace. Solo el superadministrador puede corregir el punto 1.</td>
+            <td data-i18n="prob1.s">"unauthorized_client" al probar la conexión</td>
+            <td data-i18n="prob1.f">El error más común. El conector te dirá exactamente qué revisar: 1) que el Client ID esté agregado en el Admin Console (paso 6 de la sección anterior), 2) que los scopes coincidan carácter por carácter con los dos indicados (sin espacios extra), 3) que el buzón de prueba pertenezca al mismo dominio Workspace. Solo el superadministrador puede corregir el punto 1.</td>
           </tr>
           <tr>
-            <td>"La Gmail API no está habilitada en el proyecto de Google Cloud…"</td>
-            <td>Falta habilitar la Gmail API en el proyecto (paso 2 de la sección anterior). El mensaje del conector incluye el enlace directo de activación; habilítala y espera 1-2 minutos.</td>
+            <td data-i18n="prob2.s">"La Gmail API no está habilitada en el proyecto de Google Cloud…"</td>
+            <td data-i18n="prob2.f">Falta habilitar la Gmail API en el proyecto (paso 2 de la sección anterior). El mensaje del conector incluye el enlace directo de activación; habilítala y espera 1-2 minutos.</td>
           </tr>
           <tr>
-            <td>"…no contiene un JSON válido"</td>
-            <td>Se pegó un fragmento del archivo o se modificó el contenido. Vuelve a abrir el <code>.json</code> descargado y pega todo su contenido, sin editarlo.</td>
+            <td data-i18n="prob3.s">"…no contiene un JSON válido"</td>
+            <td data-i18n="prob3.f">Se pegó un fragmento del archivo o se modificó el contenido. Vuelve a abrir el <code>.json</code> descargado y pega todo su contenido, sin editarlo.</td>
           </tr>
           <tr>
-            <td>Funciona con el buzón de prueba pero falla con otro buzón del dominio</td>
-            <td>Verifica que ese otro buzón exista y esté activo en el mismo dominio Workspace — la delegación cubre todo el dominio automáticamente, pero un correo mal escrito o de otro dominio siempre fallará.</td>
+            <td data-i18n="prob4.s">Funciona con el buzón de prueba pero falla con otro buzón del dominio</td>
+            <td data-i18n="prob4.f">Verifica que ese otro buzón exista y esté activo en el mismo dominio Workspace — la delegación cubre todo el dominio automáticamente, pero un correo mal escrito o de otro dominio siempre fallará.</td>
           </tr>
           <tr>
-            <td>"Gmail API no respondió correctamente (HTTP 429)"</td>
-            <td>Límite de cuota temporal de la API. Es transitorio; el agente puede reintentar en unos segundos.</td>
+            <td data-i18n="prob5.s">"Gmail API no respondió correctamente (HTTP 429)"</td>
+            <td data-i18n="prob5.f">Límite de cuota temporal de la API. Es transitorio; el agente puede reintentar en unos segundos.</td>
           </tr>
           <tr>
-            <td>El conector aparece "Sin configurar" tras guardar</td>
-            <td>Algún campo obligatorio quedó vacío. Ábrelo de nuevo y completa el JSON de la cuenta de servicio y el buzón de prueba.</td>
+            <td data-i18n="prob6.s">El conector aparece "Sin configurar" tras guardar</td>
+            <td data-i18n="prob6.f">Algún campo obligatorio quedó vacío. Ábrelo de nuevo y completa el JSON de la cuenta de servicio y el buzón de prueba.</td>
           </tr>
         </tbody>
       </table>
@@ -267,33 +267,255 @@
 
     <!-- ============ 8. FAQ Y SEGURIDAD ============ -->
     <section>
-      <h2 id="faq-seguridad">Preguntas frecuentes y notas de seguridad</h2>
+      <h2 id="faq-seguridad" data-i18n="section.faq_seguridad">Preguntas frecuentes y notas de seguridad</h2>
 
-      <h3>¿Qué tan sensible es el JSON de la cuenta de servicio?</h3>
-      <p><strong>Es la credencial de mayor cuidado de los tres conectores Gmail.</strong> A diferencia de un refresh token de OAuth2 (que solo da acceso a un buzón), esta clave puede impersonar <strong>cualquier</strong> buzón autorizado del dominio mientras la delegación siga activa. Trátala con el mismo cuidado que la contraseña de un administrador — nunca la compartas por chat, correo o capturas de pantalla.</p>
+      <h3 data-i18n="faq1.q">¿Qué tan sensible es el JSON de la cuenta de servicio?</h3>
+      <p data-i18n="faq1.a"><strong>Es la credencial de mayor cuidado de los tres conectores Gmail.</strong> A diferencia de un refresh token de OAuth2 (que solo da acceso a un buzón), esta clave puede impersonar <strong>cualquier</strong> buzón autorizado del dominio mientras la delegación siga activa. Trátala con el mismo cuidado que la contraseña de un administrador — nunca la compartas por chat, correo o capturas de pantalla.</p>
 
-      <h3>¿El agente puede acceder a buzones que no le he indicado?</h3>
-      <p>Técnicamente la credencial lo permitiría (la delegación cubre todo el dominio), pero el agente solo actúa sobre los buzones que el usuario le menciona en la conversación — no explora ni descubre buzones por su cuenta. La restricción real depende de cómo uses el conector, no de un límite técnico de la credencial.</p>
+      <h3 data-i18n="faq2.q">¿El agente puede acceder a buzones que no le he indicado?</h3>
+      <p data-i18n="faq2.a">Técnicamente la credencial lo permitiría (la delegación cubre todo el dominio), pero el agente solo actúa sobre los buzones que el usuario le menciona en la conversación — no explora ni descubre buzones por su cuenta. La restricción real depende de cómo uses el conector, no de un límite técnico de la credencial.</p>
 
-      <h3>¿El agente puede borrar correos o cambiar la configuración del buzón?</h3>
-      <p>No. El conector abre todas las conexiones limitadas a los scopes <code>gmail.readonly</code> y <code>gmail.send</code>; Gmail rechaza cualquier operación fuera de esos alcances aunque el código lo intentara.</p>
+      <h3 data-i18n="faq3.q">¿El agente puede borrar correos o cambiar la configuración del buzón?</h3>
+      <p data-i18n="faq3.a">No. El conector abre todas las conexiones limitadas a los scopes <code>gmail.readonly</code> y <code>gmail.send</code>; Gmail rechaza cualquier operación fuera de esos alcances aunque el código lo intentara.</p>
 
-      <h3>Rotación de credenciales</h3>
-      <p>Recomendado cada 90 días o según tu política: genera una nueva clave JSON en Google Cloud Console (la cuenta de servicio puede tener varias claves activas a la vez), actualízala en el formulario del conector, prueba la conexión, y luego elimina la clave anterior. La delegación de dominio no cambia — sigue asociada al mismo Client ID.</p>
+      <h3 data-i18n="faq4.q">Rotación de credenciales</h3>
+      <p data-i18n="faq4.a">Recomendado cada 90 días o según tu política: genera una nueva clave JSON en Google Cloud Console (la cuenta de servicio puede tener varias claves activas a la vez), actualízala en el formulario del conector, prueba la conexión, y luego elimina la clave anterior. La delegación de dominio no cambia — sigue asociada al mismo Client ID.</p>
 
-      <h3>¿Qué hago si el JSON se compromete?</h3>
-      <ol>
+      <h3 data-i18n="faq5.q">¿Qué hago si el JSON se compromete?</h3>
+      <ol data-i18n="faq5.a">
         <li>El superadministrador elimina la entrada de delegación en el Admin Console (Seguridad → Delegación en todo el dominio) — esto revoca el acceso de inmediato a todos los buzones.</li>
         <li>Elimina la clave comprometida en Google Cloud Console (IAM y administración → Cuentas de servicio → Claves).</li>
         <li>Genera una nueva clave, vuelve a autorizar la delegación con el mismo Client ID, y actualiza el formulario del conector.</li>
       </ol>
 
       <div class="callout callout-warning">
-        <span class="callout-title">Buenas prácticas</span>
-        Usa una cuenta de servicio dedicada solo a este conector; autoriza únicamente los dos scopes mínimos; nunca compartas el JSON por canales no seguros; y revisa periódicamente en el Admin Console qué Client IDs tienen delegación de dominio activa en tu organización — es la superficie de mayor riesgo de todo el catálogo de conectores Gmail.
+        <span class="callout-title" data-i18n="callout.practicas.title">Buenas prácticas</span>
+        <span data-i18n="callout.practicas.body">Usa una cuenta de servicio dedicada solo a este conector; autoriza únicamente los dos scopes mínimos; nunca compartas el JSON por canales no seguros; y revisa periódicamente en el Admin Console qué Client IDs tienen delegación de dominio activa en tu organización — es la superficie de mayor riesgo de todo el catálogo de conectores Gmail.</span>
       </div>
     </section>
 
   </main>
+  <script>
+    const I18N = {
+  "es": {
+    "doc_title": "Conector Gmail Workspace — Ruvic",
+    "toc_title": "Contenido",
+    "toc.que_es": "¿Qué es y para qué sirve?",
+    "toc.prerrequisitos": "Prerrequisitos",
+    "toc.configuracion_fabricante": "Configuración en el fabricante",
+    "toc.permisos": "Permisos requeridos",
+    "toc.configuracion_ruvic": "Configuración en Ruvic",
+    "toc.verificacion": "Verificación",
+    "toc.solucion_problemas": "Solución de problemas",
+    "toc.faq_seguridad": "Preguntas frecuentes y notas de seguridad",
+    "guide_title": "Gmail Workspace",
+    "section.que_es": "¿Qué es y para qué sirve?",
+    "que_es.intro": "El conector Gmail Workspace permite que el agente de Ruvic lea, busque y envíe correos desde <strong>uno o varios buzones</strong> de tu dominio Google Workspace, usando una sola credencial administrada centralizadamente por tu equipo de TI — sin que cada usuario tenga que autorizar su propio buzón por separado. Ideal para automatizar buzones compartidos de un equipo. Una vez configurado, puedes pedirle al agente cosas como:",
+    "que_es.li1": "\"Revisa el buzón de facturación y resume los correos nuevos.\"",
+    "que_es.li2": "\"Busca en soporte@empresa.com los correos de la última semana sobre 'incidente crítico'.\"",
+    "que_es.li3": "\"Envía desde cobranzas@empresa.com un recordatorio de pago con el estado de cuenta adjunto.\"",
+    "que_es.ops_lead": "Operaciones soportadas:",
+    "table.operacion": "Operación",
+    "table.que_hace": "Qué hace",
+    "op.list": "Busca/lista correos usando filtros (sintaxis de búsqueda de Gmail)",
+    "op.read": "Lee el detalle y el cuerpo de un correo",
+    "op.send": "Envía un correo de texto",
+    "op.send_attach": "Envía un correo con un archivo adjunto (máx. 20 MB)",
+    "callout.solo_ws.title": "Solo para Google Workspace",
+    "callout.solo_ws.body": "Este conector usa <strong>delegación de dominio</strong>, una función exclusiva de Google Workspace. No funciona con cuentas de Gmail personales (@gmail.com) — para esas usa el conector \"Gmail\" (OAuth2) o \"Gmail (IMAP/SMTP)\".",
+    "section.prerrequisitos": "Prerrequisitos",
+    "prereq.li1": "Una organización con <strong>Google Workspace</strong> (no funciona con cuentas de Gmail personales @gmail.com).",
+    "prereq.li2": "Acceso de <strong>superadministrador de Google Workspace</strong> — es la única persona que puede autorizar la delegación de dominio (paso único, sección 3).",
+    "prereq.li3": "Acceso al <strong>Google Cloud Console</strong> del mismo dominio, con permisos para crear un proyecto y una cuenta de servicio.",
+    "prereq.li4": "Los correos de los buzones que el agente va a usar (ej. <code>facturacion@tuempresa.com</code>).",
+    "section.configuracion_fabricante": "Configuración en el fabricante",
+    "fab.intro": "Vas a crear una <strong>cuenta de servicio</strong> en Google Cloud y autorizarla mediante <strong>delegación de dominio</strong> para que pueda actuar en nombre de cualquier buzón autorizado. Esto se hace <strong>una sola vez por dominio</strong> — después, agregar un buzón nuevo no requiere repetir estos pasos, solo compartírselo al agente por su correo.",
+    "step1.title": "Crea (o selecciona) un proyecto en Google Cloud Console.",
+    "step1.body": "Ve a <a href=\"https://console.cloud.google.com/projectcreate\" target=\"_blank\" rel=\"noopener\">console.cloud.google.com/projectcreate</a> y crea un proyecto (o reutiliza uno existente del mismo dominio).",
+    "step2.title": "Habilita la Gmail API.",
+    "step2.body": "En el menú <em>APIs y servicios → Biblioteca</em>, busca \"Gmail API\" y pulsa <em>Habilitar</em>.",
+    "step3.title": "Crea la cuenta de servicio.",
+    "step3.body": "En <em>IAM y administración → Cuentas de servicio → Crear cuenta de servicio</em>. Dale un nombre (ej. <code>ruvic-gmail-workspace</code>) y termina el asistente sin asignar roles adicionales de proyecto.",
+    "step4.title": "Genera y descarga la clave JSON.",
+    "step4.body": "Abre la cuenta de servicio creada → pestaña <em>Claves</em> → <em>Agregar clave → Crear clave nueva → JSON</em>. Se descargará un archivo <code>.json</code>: guárdalo, lo usarás en el formulario de Ruvic.",
+    "ph.sa_key": "[ Captura: pestaña Claves de la cuenta de servicio con el botón \"Agregar clave\" — reemplazar por assets/img/workspace-sa-key.png ]",
+    "step5.title": "Anota el ID de cliente único de la cuenta de servicio.",
+    "step5.body": "En la pestaña <em>Detalles</em> de la cuenta de servicio, copia el <strong>ID de cliente único</strong> (una cadena numérica larga). Lo necesitarás en el siguiente paso.",
+    "step6.title": "El superadministrador autoriza la delegación de dominio (paso crítico).",
+    "step6.body": "Este paso <strong>solo lo puede hacer el superadministrador</strong> de tu organización de Google Workspace — no un usuario normal ni un administrador de solo Cloud. Ve a <a href=\"https://admin.google.com/ac/owl/domainwidedelegation\" target=\"_blank\" rel=\"noopener\">admin.google.com → Seguridad → Control de acceso a las API → Delegación en todo el dominio</a>. Pulsa <em>Agregar nuevo</em> e ingresa:",
+    "step6.li1": "<strong>ID de cliente:</strong> el ID de cliente único copiado en el paso anterior.",
+    "step6.li2": "<strong>Alcances OAuth</strong> (exactamente estos dos, separados por coma, sin espacios extra):",
+    "step6.after": "Guarda. Sin este paso, cualquier intento de conexión falla con el error <code>unauthorized_client</code>.",
+    "ph.delegation": "[ Captura: pantalla de delegación en todo el dominio con el ID de cliente y los scopes — reemplazar por assets/img/workspace-domain-delegation.png ]",
+    "step7.title": "Define qué buzón usarás para la prueba inicial.",
+    "step7.body": "Anota el correo de un buzón del dominio (ej. <code>facturacion@tuempresa.com</code>) para el formulario de Ruvic. Después de configurado, el agente podrá usar <strong>cualquier otro buzón autorizado</strong> del mismo dominio, no solo este.",
+    "section.permisos": "Permisos requeridos",
+    "permisos.intro": "Principio de mínimo privilegio: la cuenta de servicio solo necesita estos dos scopes de Gmail. No autorices scopes de administración, de Drive ni de otras APIs de Workspace.",
+    "table.scope": "Scope",
+    "table.scope_uso": "Para qué lo usa el conector",
+    "scope.readonly": "Buscar y listar correos (<code>mail.list</code>), leer el detalle de un correo (<code>mail.read</code>)",
+    "scope.send": "Enviar correos (<code>mail.send</code>, <code>mail.send_with_attachment</code>)",
+    "callout.dominio.title": "La delegación aplica a TODO el dominio",
+    "callout.dominio.body": "A diferencia de OAuth2 por usuario, estos scopes no se limitan a un buzón — la cuenta de servicio puede impersonar <strong>cualquier</strong> buzón del dominio con esos permisos, incluidos los que se creen en el futuro. No hay forma de restringirlo a una lista específica de buzones desde el Admin Console.",
+    "section.configuracion_ruvic": "Configuración en Ruvic",
+    "ruvic.intro": "Entra a <strong>Settings → Conectores</strong>, busca la tarjeta <strong>Gmail (Google Workspace — cuenta de servicio)</strong> y pulsa <strong>Configurar</strong>. Diligencia el formulario con los valores que obtuviste en la sección anterior:",
+    "table.campo": "Campo del formulario",
+    "table.valor": "Valor",
+    "field.json.label": "JSON de la cuenta de servicio",
+    "field.json.value": "Abre el archivo <code>.json</code> descargado en el paso 4 y pega <strong>todo</strong> su contenido",
+    "field.buzon.label": "Buzón de prueba",
+    "field.buzon.value": "El correo definido en el paso 7 (ej. <code>facturacion@tuempresa.com</code>)",
+    "field.timeout.label": "Timeout de solicitud",
+    "field.timeout.value": "Opcional; <code>30</code> segundos por defecto",
+    "ruvic.probar": "Guarda y pulsa <span class=\"ruvic-button\">Probar conexión</span> — la plataforma se conectará a Gmail API impersonando el buzón de prueba y confirmará que la delegación de dominio funciona.",
+    "ph.form": "[ Captura: formulario del conector Gmail Workspace en Settings → Conectores — reemplazar por assets/img/workspace-form.png ]",
+    "section.verificacion": "Verificación",
+    "verif1.title": "Test de conexión exitoso.",
+    "verif1.body": "El botón <em>Probar conexión</em> debe responder: <em>\"Conexión exitosa al buzón facturacion@tuempresa.com (delegación de dominio)\"</em>. La tarjeta del conector cambia a estado <strong>Configurado</strong>.",
+    "verif2.title": "Automatización mínima de prueba, incluido un segundo buzón.",
+    "verif2.body": "Abre una conversación nueva con el agente y pídele:",
+    "verif2.quote": "<em>\"Busca en el buzón facturacion@tuempresa.com los correos no leídos de los últimos 3 días.\"</em>",
+    "verif2.after": "Luego prueba con otro buzón del dominio distinto al de la prueba inicial (ej. <code>soporte@tuempresa.com</code>) — si el agente responde con datos reales de ambos sin pedir nueva configuración, la delegación de dominio quedó operativa de punta a punta.",
+    "section.solucion_problemas": "Solución de problemas",
+    "table.sintoma": "Mensaje / síntoma",
+    "table.causa": "Causa probable y solución",
+    "prob1.s": "\"unauthorized_client\" al probar la conexión",
+    "prob1.f": "El error más común. El conector te dirá exactamente qué revisar: 1) que el Client ID esté agregado en el Admin Console (paso 6 de la sección anterior), 2) que los scopes coincidan carácter por carácter con los dos indicados (sin espacios extra), 3) que el buzón de prueba pertenezca al mismo dominio Workspace. Solo el superadministrador puede corregir el punto 1.",
+    "prob2.s": "\"La Gmail API no está habilitada en el proyecto de Google Cloud…\"",
+    "prob2.f": "Falta habilitar la Gmail API en el proyecto (paso 2 de la sección anterior). El mensaje del conector incluye el enlace directo de activación; habilítala y espera 1-2 minutos.",
+    "prob3.s": "\"…no contiene un JSON válido\"",
+    "prob3.f": "Se pegó un fragmento del archivo o se modificó el contenido. Vuelve a abrir el <code>.json</code> descargado y pega todo su contenido, sin editarlo.",
+    "prob4.s": "Funciona con el buzón de prueba pero falla con otro buzón del dominio",
+    "prob4.f": "Verifica que ese otro buzón exista y esté activo en el mismo dominio Workspace — la delegación cubre todo el dominio automáticamente, pero un correo mal escrito o de otro dominio siempre fallará.",
+    "prob5.s": "\"Gmail API no respondió correctamente (HTTP 429)\"",
+    "prob5.f": "Límite de cuota temporal de la API. Es transitorio; el agente puede reintentar en unos segundos.",
+    "prob6.s": "El conector aparece \"Sin configurar\" tras guardar",
+    "prob6.f": "Algún campo obligatorio quedó vacío. Ábrelo de nuevo y completa el JSON de la cuenta de servicio y el buzón de prueba.",
+    "section.faq_seguridad": "Preguntas frecuentes y notas de seguridad",
+    "faq1.q": "¿Qué tan sensible es el JSON de la cuenta de servicio?",
+    "faq1.a": "<strong>Es la credencial de mayor cuidado de los tres conectores Gmail.</strong> A diferencia de un refresh token de OAuth2 (que solo da acceso a un buzón), esta clave puede impersonar <strong>cualquier</strong> buzón autorizado del dominio mientras la delegación siga activa. Trátala con el mismo cuidado que la contraseña de un administrador — nunca la compartas por chat, correo o capturas de pantalla.",
+    "faq2.q": "¿El agente puede acceder a buzones que no le he indicado?",
+    "faq2.a": "Técnicamente la credencial lo permitiría (la delegación cubre todo el dominio), pero el agente solo actúa sobre los buzones que el usuario le menciona en la conversación — no explora ni descubre buzones por su cuenta. La restricción real depende de cómo uses el conector, no de un límite técnico de la credencial.",
+    "faq3.q": "¿El agente puede borrar correos o cambiar la configuración del buzón?",
+    "faq3.a": "No. El conector abre todas las conexiones limitadas a los scopes <code>gmail.readonly</code> y <code>gmail.send</code>; Gmail rechaza cualquier operación fuera de esos alcances aunque el código lo intentara.",
+    "faq4.q": "Rotación de credenciales",
+    "faq4.a": "Recomendado cada 90 días o según tu política: genera una nueva clave JSON en Google Cloud Console (la cuenta de servicio puede tener varias claves activas a la vez), actualízala en el formulario del conector, prueba la conexión, y luego elimina la clave anterior. La delegación de dominio no cambia — sigue asociada al mismo Client ID.",
+    "faq5.q": "¿Qué hago si el JSON se compromete?",
+    "faq5.a": "<li>El superadministrador elimina la entrada de delegación en el Admin Console (Seguridad → Delegación en todo el dominio) — esto revoca el acceso de inmediato a todos los buzones.</li> <li>Elimina la clave comprometida en Google Cloud Console (IAM y administración → Cuentas de servicio → Claves).</li> <li>Genera una nueva clave, vuelve a autorizar la delegación con el mismo Client ID, y actualiza el formulario del conector.</li>",
+    "callout.practicas.title": "Buenas prácticas",
+    "callout.practicas.body": "Usa una cuenta de servicio dedicada solo a este conector; autoriza únicamente los dos scopes mínimos; nunca compartas el JSON por canales no seguros; y revisa periódicamente en el Admin Console qué Client IDs tienen delegación de dominio activa en tu organización — es la superficie de mayor riesgo de todo el catálogo de conectores Gmail."
+  },
+  "en": {
+    "doc_title": "Gmail Workspace Connector — Ruvic",
+    "toc_title": "Contents",
+    "toc.que_es": "What it is and what it’s for",
+    "toc.prerrequisitos": "Prerequisites",
+    "toc.configuracion_fabricante": "Vendor / provider setup",
+    "toc.permisos": "Required permissions",
+    "toc.configuracion_ruvic": "Configuration in Ruvic",
+    "toc.verificacion": "Verification",
+    "toc.solucion_problemas": "Troubleshooting",
+    "toc.faq_seguridad": "FAQ and security notes",
+    "guide_title": "Gmail Workspace",
+    "section.que_es": "What it is and what it’s for",
+    "que_es.intro": "The Gmail Workspace connector lets the Ruvic agent read, search and send email from <strong>one or several mailboxes</strong> in your Google Workspace domain, using a single credential managed centrally by your IT team — without each user having to authorize their own mailbox separately. Ideal for automating a team's shared mailboxes. Once configured, you can ask the agent things like:",
+    "que_es.li1": "\"Check the billing mailbox and summarize new emails.\"",
+    "que_es.li2": "\"Search support@company.com for last week's emails about 'critical incident'.\"",
+    "que_es.li3": "\"Send a payment reminder from collections@company.com with the statement attached.\"",
+    "que_es.ops_lead": "Supported operations:",
+    "table.operacion": "Operation",
+    "table.que_hace": "What it does",
+    "op.list": "Searches/lists emails using filters (Gmail search syntax)",
+    "op.read": "Reads the detail and body of an email",
+    "op.send": "Sends a text email",
+    "op.send_attach": "Sends an email with a file attachment (max 20 MB)",
+    "callout.solo_ws.title": "Google Workspace only",
+    "callout.solo_ws.body": "This connector uses <strong>domain-wide delegation</strong>, a Google Workspace-only feature. It does not work with personal Gmail accounts (@gmail.com) — for those, use the \"Gmail\" (OAuth2) or \"Gmail (IMAP/SMTP)\" connector.",
+    "section.prerrequisitos": "Prerequisites",
+    "prereq.li1": "An organization with <strong>Google Workspace</strong> (does not work with personal @gmail.com accounts).",
+    "prereq.li2": "<strong>Google Workspace super admin</strong> access — the only person who can authorize domain-wide delegation (one-time step, section 3).",
+    "prereq.li3": "Access to the <strong>Google Cloud Console</strong> of the same domain, with permissions to create a project and a service account.",
+    "prereq.li4": "The email addresses of the mailboxes the agent will use (e.g. <code>billing@yourcompany.com</code>).",
+    "section.configuracion_fabricante": "Vendor / provider setup",
+    "fab.intro": "You will create a <strong>service account</strong> in Google Cloud and authorize it via <strong>domain-wide delegation</strong> so it can act on behalf of any authorized mailbox. This is done <strong>once per domain</strong> — afterward, adding a new mailbox doesn't require repeating these steps, just telling the agent its email address.",
+    "step1.title": "Create (or select) a project in Google Cloud Console.",
+    "step1.body": "Go to <a href=\"https://console.cloud.google.com/projectcreate\" target=\"_blank\" rel=\"noopener\">console.cloud.google.com/projectcreate</a> and create a project (or reuse an existing one from the same domain).",
+    "step2.title": "Enable the Gmail API.",
+    "step2.body": "In <em>APIs &amp; Services → Library</em>, search for \"Gmail API\" and click <em>Enable</em>.",
+    "step3.title": "Create the service account.",
+    "step3.body": "Go to <em>IAM &amp; Admin → Service Accounts → Create Service Account</em>. Give it a name (e.g. <code>ruvic-gmail-workspace</code>) and finish the wizard without granting extra project roles.",
+    "step4.title": "Generate and download the JSON key.",
+    "step4.body": "Open the service account → <em>Keys</em> tab → <em>Add key → Create new key → JSON</em>. A <code>.json</code> file will download: save it, you'll use it in the Ruvic form.",
+    "ph.sa_key": "[ Screenshot: service account Keys tab with the \"Add key\" button — replace with assets/img/workspace-sa-key.png ]",
+    "step5.title": "Note the service account's unique client ID.",
+    "step5.body": "In the service account's <em>Details</em> tab, copy the <strong>Unique Client ID</strong> (a long numeric string). You'll need it in the next step.",
+    "step6.title": "The super admin authorizes domain-wide delegation (critical step).",
+    "step6.body": "This step can <strong>only be done by your Google Workspace organization's super admin</strong> — not a regular user or a Cloud-only admin. Go to <a href=\"https://admin.google.com/ac/owl/domainwidedelegation\" target=\"_blank\" rel=\"noopener\">admin.google.com → Security → API controls → Domain-wide delegation</a>. Click <em>Add new</em> and enter:",
+    "step6.li1": "<strong>Client ID:</strong> the unique client ID copied in the previous step.",
+    "step6.li2": "<strong>OAuth scopes</strong> (exactly these two, comma-separated, no extra spaces):",
+    "step6.after": "Save. Without this step, any connection attempt fails with the <code>unauthorized_client</code> error.",
+    "ph.delegation": "[ Screenshot: domain-wide delegation screen with the client ID and scopes — replace with assets/img/workspace-domain-delegation.png ]",
+    "step7.title": "Decide which mailbox you'll use for the initial test.",
+    "step7.body": "Note the email of a domain mailbox (e.g. <code>billing@yourcompany.com</code>) for the Ruvic form. Once configured, the agent can use <strong>any other authorized mailbox</strong> in the same domain, not just this one.",
+    "section.permisos": "Required permissions",
+    "permisos.intro": "Least-privilege principle: the service account only needs these two Gmail scopes. Do not authorize admin, Drive, or other Workspace API scopes.",
+    "table.scope": "Scope",
+    "table.scope_uso": "Why the connector needs it",
+    "scope.readonly": "Search and list emails (<code>mail.list</code>), read an email's detail (<code>mail.read</code>)",
+    "scope.send": "Send emails (<code>mail.send</code>, <code>mail.send_with_attachment</code>)",
+    "callout.dominio.title": "Delegation applies to the ENTIRE domain",
+    "callout.dominio.body": "Unlike per-user OAuth2, these scopes aren't limited to one mailbox — the service account can impersonate <strong>any</strong> mailbox in the domain with those permissions, including ones created in the future. There's no way to restrict it to a specific list of mailboxes from the Admin Console.",
+    "section.configuracion_ruvic": "Configuration in Ruvic",
+    "ruvic.intro": "Go to <strong>Settings → Connectors</strong>, find the <strong>Gmail (Google Workspace — service account)</strong> card and click <strong>Configure</strong>. Fill in the form with the values from the previous section:",
+    "table.campo": "Form field",
+    "table.valor": "Value",
+    "field.json.label": "Service account JSON",
+    "field.json.value": "Open the <code>.json</code> file downloaded in step 4 and paste its <strong>entire</strong> content",
+    "field.buzon.label": "Test mailbox",
+    "field.buzon.value": "The email defined in step 7 (e.g. <code>billing@yourcompany.com</code>)",
+    "field.timeout.label": "Request timeout",
+    "field.timeout.value": "Optional; defaults to <code>30</code> seconds",
+    "ruvic.probar": "Save and click <span class=\"ruvic-button\">Test connection</span> — the platform will connect to the Gmail API impersonating the test mailbox and confirm domain-wide delegation works.",
+    "ph.form": "[ Screenshot: Gmail Workspace connector form in Settings → Connectors — replace with assets/img/workspace-form.png ]",
+    "section.verificacion": "Verification",
+    "verif1.title": "Successful connection test.",
+    "verif1.body": "The <em>Test connection</em> button should return: <em>\"Successful connection to mailbox billing@yourcompany.com (domain-wide delegation)\"</em>. The connector card switches to <strong>Configured</strong>.",
+    "verif2.title": "Minimal test automation, including a second mailbox.",
+    "verif2.body": "Open a new conversation with the agent and ask:",
+    "verif2.quote": "<em>\"Search the billing@yourcompany.com mailbox for unread emails from the last 3 days.\"</em>",
+    "verif2.after": "Then try a different domain mailbox than the initial test one (e.g. <code>support@yourcompany.com</code>) — if the agent replies with real data from both without asking for new configuration, domain-wide delegation is fully operational.",
+    "section.solucion_problemas": "Troubleshooting",
+    "table.sintoma": "Message / symptom",
+    "table.causa": "Likely cause and fix",
+    "prob1.s": "\"unauthorized_client\" when testing the connection",
+    "prob1.f": "The most common error. The connector will tell you exactly what to check: 1) that the Client ID is added in the Admin Console (step 6 of the previous section), 2) that the scopes match character-for-character with the two listed (no extra spaces), 3) that the test mailbox belongs to the same Workspace domain. Only the super admin can fix item 1.",
+    "prob2.s": "\"The Gmail API is not enabled in the Google Cloud project…\"",
+    "prob2.f": "The Gmail API isn't enabled in the project (step 2 of the previous section). The connector's message includes the direct activation link; enable it and wait 1-2 minutes.",
+    "prob3.s": "\"…does not contain valid JSON\"",
+    "prob3.f": "A fragment of the file was pasted, or the content was edited. Reopen the downloaded <code>.json</code> file and paste its entire content, unedited.",
+    "prob4.s": "Works with the test mailbox but fails with another domain mailbox",
+    "prob4.f": "Verify that the other mailbox exists and is active in the same Workspace domain — delegation automatically covers the whole domain, but a mistyped email or one from another domain will always fail.",
+    "prob5.s": "\"Gmail API did not respond correctly (HTTP 429)\"",
+    "prob5.f": "Temporary API quota limit. This is transient; the agent can retry in a few seconds.",
+    "prob6.s": "Connector shows \"Not configured\" after saving",
+    "prob6.f": "A required field was left empty. Open it again and fill in the service account JSON and the test mailbox.",
+    "section.faq_seguridad": "FAQ and security notes",
+    "faq1.q": "How sensitive is the service account JSON?",
+    "faq1.a": "<strong>This is the highest-care credential of the three Gmail connectors.</strong> Unlike an OAuth2 refresh token (which only grants access to one mailbox), this key can impersonate <strong>any</strong> authorized mailbox in the domain as long as delegation stays active. Treat it with the same care as an administrator's password — never share it over chat, email, or screenshots.",
+    "faq2.q": "Can the agent access mailboxes I haven't told it about?",
+    "faq2.a": "Technically the credential would allow it (delegation covers the whole domain), but the agent only acts on mailboxes the user mentions in conversation — it doesn't explore or discover mailboxes on its own. The real restriction depends on how you use the connector, not a technical limit of the credential.",
+    "faq3.q": "Can the agent delete emails or change mailbox settings?",
+    "faq3.a": "No. The connector limits every connection to the <code>gmail.readonly</code> and <code>gmail.send</code> scopes; Gmail rejects any operation outside those scopes even if the code attempted it.",
+    "faq4.q": "Credential rotation",
+    "faq4.a": "Recommended every 90 days or per your policy: generate a new JSON key in Google Cloud Console (a service account can have several active keys at once), update it in the connector form, test the connection, then delete the old key. Domain-wide delegation doesn't change — it stays tied to the same Client ID.",
+    "faq5.q": "What if the JSON is compromised?",
+    "faq5.a": "<li>The super admin removes the delegation entry in the Admin Console (Security → Domain-wide delegation) — this immediately revokes access to all mailboxes.</li> <li>Delete the compromised key in Google Cloud Console (IAM &amp; Admin → Service Accounts → Keys).</li> <li>Generate a new key, re-authorize delegation with the same Client ID, and update the connector form.</li>",
+    "callout.practicas.title": "Best practices",
+    "callout.practicas.body": "Use a service account dedicated only to this connector; authorize only the two minimum scopes; never share the JSON over insecure channels; and periodically review in the Admin Console which Client IDs have active domain-wide delegation in your organization — it's the highest-risk surface of the entire Gmail connector catalog."
+  }
+};
+    /* El portal aplica el idioma del usuario (localStorage ruvic-docs-lang)
+       y actualiza [data-i18n], [data-i18n-placeholder] y [data-i18n-alt]. */
+  </script>
 </body>
 </html>
