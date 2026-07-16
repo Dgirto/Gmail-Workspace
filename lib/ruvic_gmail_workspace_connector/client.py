@@ -53,10 +53,40 @@ _MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024
 _EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
+def _service_disabled_info(exc: HttpError) -> tuple[str, str] | None:
+    """Detecta el caso 403 SERVICE_DISABLED (la API no está habilitada en
+    el proyecto de Google Cloud) y retorna (nombre de la API, URL de
+    activación), o None si el error es de otro tipo."""
+    try:
+        details = exc.error_details or []
+    except Exception:
+        details = []
+    for detail in details:
+        if isinstance(detail, dict) and detail.get("reason") == "SERVICE_DISABLED":
+            meta = detail.get("metadata", {})
+            return (
+                meta.get("serviceTitle", "API de Google"),
+                meta.get(
+                    "activationUrl",
+                    "Google Cloud Console -> APIs y servicios -> Biblioteca",
+                ),
+            )
+    return None
+
+
 def _wrap_http_error(exc: HttpError) -> GmailWorkspaceConnectorError:
     """Traduce un error HTTP de la API de Gmail a una excepción propia,
     sin dejar escapar nunca el tipo crudo del cliente HTTP."""
     status = exc.resp.status if getattr(exc, "resp", None) is not None else None
+    if status == 403:
+        disabled = _service_disabled_info(exc)
+        if disabled is not None:
+            service_title, activation_url = disabled
+            return GmailWorkspaceAuthError(
+                f"La {service_title} no está habilitada en el proyecto de "
+                f"Google Cloud del Client ID configurado. Habilítala en "
+                f"{activation_url} y espera 1-2 minutos antes de reintentar."
+            )
     if status in (401, 403):
         return GmailWorkspaceAuthError(
             "Credenciales inválidas o sin permiso suficiente sobre este buzón. "
