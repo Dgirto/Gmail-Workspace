@@ -108,11 +108,25 @@ def _validate_no_header_injection(**fields: str | None) -> None:
     """Evita inyección de cabeceras de correo (CRLF) en campos que se
     interpolan directamente en el mensaje MIME (to/cc/bcc/subject)."""
     for name, value in fields.items():
+        if value is not None and not isinstance(value, str):
+            raise GmailWorkspaceDataError(
+                f"El campo '{name}' debe ser un string, no {type(value).__name__}."
+            )
         if value and ("\r" in value or "\n" in value):
             raise GmailWorkspaceDataError(
                 f"El campo '{name}' contiene saltos de línea, no permitido "
                 "(previene inyección de cabeceras de correo)."
             )
+
+
+def _validate_max_results(max_results: Any, max_limit: int) -> int:
+    if isinstance(max_results, bool) or not isinstance(max_results, int):
+        raise GmailWorkspaceDataError(
+            f"max_results debe ser un entero, no {type(max_results).__name__}."
+        )
+    if not 1 <= max_results <= max_limit:
+        raise GmailWorkspaceDataError(f"max_results debe estar entre 1 y {max_limit}.")
+    return max_results
 
 
 class GmailWorkspaceClient:
@@ -230,8 +244,8 @@ class GmailWorkspaceClient:
             >>> client.list_messages(query="is:unread", max_results=5)
             [{'id': '18f2a1', 'from': 'a@b.com', 'subject': 'Factura', ...}]
         """
+        max_results = _validate_max_results(max_results, 100)
         service = self._get_service()
-        max_results = max(1, min(int(max_results), 100))
         try:
             resp = (
                 service.users()
@@ -295,6 +309,10 @@ class GmailWorkspaceClient:
             >>> client.get_message("18f2a1")
             {'id': '18f2a1', 'subject': 'Hola', 'body_text': 'Buen día...', ...}
         """
+        if not isinstance(message_id, str) or not message_id.strip():
+            raise GmailWorkspaceDataError(
+                f"message_id debe ser un string no vacío, no {message_id!r}."
+            )
         service = self._get_service()
         try:
             msg = (
