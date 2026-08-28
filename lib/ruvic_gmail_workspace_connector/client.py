@@ -253,6 +253,12 @@ class GmailWorkspaceClient:
                 .list(userId="me", q=query, maxResults=max_results)
                 .execute(num_retries=1)
             )
+        except (RefreshError, GoogleAuthError) as exc:
+            raise GmailWorkspaceAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
 
@@ -321,6 +327,12 @@ class GmailWorkspaceClient:
                 .get(userId="me", id=message_id, format="full")
                 .execute(num_retries=1)
             )
+        except (RefreshError, GoogleAuthError) as exc:
+            raise GmailWorkspaceAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
         headers = {
@@ -382,6 +394,12 @@ class GmailWorkspaceClient:
                 .send(userId="me", body={"raw": raw})
                 .execute(num_retries=1)
             )
+        except (RefreshError, GoogleAuthError) as exc:
+            raise GmailWorkspaceAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
         self._logger.info("Correo enviado a %s desde %s", to, self.mailbox)
@@ -451,6 +469,12 @@ class GmailWorkspaceClient:
                 .send(userId="me", body={"raw": raw})
                 .execute(num_retries=1)
             )
+        except (RefreshError, GoogleAuthError) as exc:
+            raise GmailWorkspaceAuthError(
+                f"No se pudo autenticar: el token OAuth/credenciales pueden "
+                f"estar revocados, vencidos o ser inválidos. Vuelve a "
+                f"autorizar el conector. Detalle: {exc}"
+            ) from exc
         except HttpError as exc:
             raise _wrap_http_error(exc) from exc
         self._logger.info(
