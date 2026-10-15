@@ -15,6 +15,23 @@ from typing import Any
 ENV_PREFIX = "RUVIC_GMAIL_WORKSPACE_"
 
 
+def _read_timeout(default: int = 30) -> int:
+    """Lee REQUEST_TIMEOUT tratando el string vacío como ausente: la
+    plataforma envía "" cuando el campo opcional queda en blanco."""
+    raw = (os.environ.get(f"{ENV_PREFIX}REQUEST_TIMEOUT") or "").strip()
+    if not raw:
+        return default
+    try:
+        value = int(raw)
+    except ValueError:
+        raise ValueError(
+            f"{ENV_PREFIX}REQUEST_TIMEOUT debe ser un número entero de segundos, no {raw!r}."
+        ) from None
+    if value <= 0:
+        raise ValueError(f"{ENV_PREFIX}REQUEST_TIMEOUT debe ser mayor que 0, no {value}.")
+    return value
+
+
 @dataclass(frozen=True)
 class GmailWorkspaceConfig:
     """Credenciales de la cuenta de servicio con delegación de dominio.
@@ -75,5 +92,5 @@ class GmailWorkspaceConfig:
         return cls(
             service_account_info=info,
             default_mailbox=os.environ[f"{ENV_PREFIX}DEFAULT_MAILBOX"],
-            request_timeout=int(os.environ.get(f"{ENV_PREFIX}REQUEST_TIMEOUT", "30")),
+            request_timeout=_read_timeout(),
         )
